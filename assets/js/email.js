@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var xhr = new XMLHttpRequest();
     xhr.onload = function() { 
         // redirectToThanks()
+        document.getElementById("numberForm").style.display="none"
     };
     xhr.onerror = function() {
         console.error('Error:', xhr.response);
