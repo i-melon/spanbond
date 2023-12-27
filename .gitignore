@@ -4,4 +4,3 @@
 /.env
 /composer.lock
 /assets/video/
-/node_modules/
