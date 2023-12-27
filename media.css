@@ -1,3 +1,7 @@
+#contactButtonsRowCol{
+    display: flex;
+    flex-direction: row;
+}
 @media (max-width: 780px) {
     .formBlock{margin-left: 0; margin-right: 0}
     .saleBlock{padding-left: 16px; padding-right: 16px}
@@ -5,4 +9,5 @@
     .useGrid{grid-template-columns: 1fr}
     .choseUse{display: none}
     select{display: flex}
+    #contactButtonsRowCol{flex-direction: column}
 }
