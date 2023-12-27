@@ -1,0 +1,6 @@
+.gitignore.save
+/.idea/
+/vendor/
+/.env
+/composer.lock
+/assets/video/
