@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" lang="ru">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Title</title>
+    <title>Arnau</title>
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- CSS -->
     <style>
         @import './style.css';
-        @import "output.css";
+        @import "./output.css";
         @import "./media.css";
+        @import "./assets/css/loader.css";
+
         @font-face {
             font-family: customBold;
             src: url('assets/fonts/rostelecombasis_bold.otf');
@@ -21,17 +27,24 @@
             src: url('assets/fonts/rostelecombasis_medium.otf');
         }
     </style>
-    <script src="index.js">
 
-    </script>
+    <!-- Packages -->
+    <script src="https://unpkg.com/imask"></script>
+
+    <!-- JS -->
+    <script src="index.js"></script>
+    <script src="./assets/js/email.js"></script>
 </head>
 
-
-
 <body>
-    <div id="numberForm">
+    <!-- Loader -->
+    <section id="loader">
+        <div id="loader-content"></div>
+    </section>
+
+    <form id="numberForm">
         <div class="modal">
-            <button id="closeModal">
+            <button type="button" id="closeModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.3565 4.35662C4.71188 4.00124 5.28806 4.00124 5.64343 4.35662L9.99997 8.71315L14.3565 4.35662C14.7119 4.00124 15.2881 4.00124 15.6434 4.35662C15.9988 4.712 15.9988 5.28818 15.6434 5.64356L11.2869 10.0001L15.6434 14.3566C15.9988 14.712 15.9988 15.2882 15.6434 15.6436C15.2881 15.9989 14.7119 15.9989 14.3565 15.6436L9.99997 11.287L5.64343 15.6436C5.28806 15.9989 4.71188 15.9989 4.3565 15.6436C4.00112 15.2882 4.00112 14.712 4.3565 14.3566L8.71303 10.0001L4.3565 5.64356C4.00112 5.28818 4.00112 4.712 4.3565 4.35662Z" fill="black"/>
                 </svg>
@@ -39,10 +52,11 @@
             <h1 class="modalTitle">Оставить заявку</h1>
             <p class="modalText my-8">Мы перезвоним вам в самое ближайшее время, чтобы обсудить подробности вашего проекта.</p>
             <p class="modalText self-start">Телефон</p>
-            <input class="modalInput mt-2" placeholder="+7 (   )">
+            <input id="modalPhoneNumber" name="phone" class="modalInput mt-2" 
+                    type="text" placeholder="+7 (700) 000-00-00">
             <button class="mainButtin mt-5 self-stretch">Отправить заявку</button>
         </div>
-    </div>
+    </form>
     <div class="global">
         <header class="flex flex-row justify-between my-4 mx-4 lg:mx-24 items-stretch">
             <div class="buttonRow flex flex-row items-stretch">
@@ -268,20 +282,22 @@
         <div class="formBlock mx-4 lg:mx-24 mt-24 flex flex-col py-12 px-7">
             <h1 class="Title">Оставьте заявку и получите<span class="green"><br>расчет стоимости</span> за 15 минут</h1>
             <p class="titleText mt-10"><span class="titleTextGray">Мы посчитаем ваш объем и дадим лучшее предложение для вас.</span></p>
-            <div class="formRow flex flex-col lg:flex-row gap-4 items-stretch lg:items-end self-stretch">
+            <form action="" id="fifteenMinutesForm" class="formRow flex flex-col lg:flex-row gap-4 items-stretch lg:items-end self-stretch">
                 <div class="formItem basis-1/4">
                     <p class="titleText mt-10"><span class="titleTextGray">Имя</span></p>
-                    <input class="formInput  w-full" type="text" placeholder="Как вас зовут">
+                    <input id="fifteenMinutesName" name="name" class="formInput w-full" 
+                            type="text" placeholder="Как вас зовут" required>
                 </div>
                 <div class="formItem basis-1/4">
                     <p class="titleText mt-10"><span class="titleTextGray">Телефон</span></p>
-                    <input class="formInput w-full" type="text" placeholder="+7 (   )">
+                    <input id="fifteenMinutesPhoneNumber" name="phone" class="formInput w-full" 
+                            type="text" placeholder="+7 (700) 000-00-00" required>
                 </div>
-                <button class="mainButtin">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <button class="mainButtin" value="fifteenMinutesForm">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="white" stroke-width="2" stroke-linecap="square"/>
                     </svg>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="weBlock mx-4 lg:mx-24  mt-24 flex flex-col">
             <a name="pluses"></a>
@@ -372,23 +388,25 @@
             </div>
 
         </div>
-        <div class="saleBlock lg:mx-24  mt-28 flex flex-col items-center py-12">
+        <div class="saleBlock lg:mx-24 mt-28 flex flex-col items-center py-12 px-12">
             <h1 class="Title"><span class="white">Скидки до 30% <br>до конца декабря</span></h1>
             <p class="titleText mt-10"><span class="white">При больших объемах мы готовы дать вам выгодное предложение.</span> </p>
-            <div class="formRow mt-10 flex flex-col lg:flex-row gap-8 lg:gap-4 items-stretch lg:items-end  ">
+            <form action="" id="thirtyPercentForm" class="formRow mt-10 flex flex-col lg:flex-row gap-8 lg:gap-4 items-stretch lg:items-end  ">
                 <div class="formItem flex flex-col items-start">
                     <p class="titleText flex justify-start"><span class="titleTextGray">Имя</span></p>
-                    <input class="formInput2  w-full" type="text" placeholder="Как вас зовут">
+                    <input id="thirtyPercentName" name="name" class="formInput2 w-full" 
+                            type="text" placeholder="Как вас зовут" required>
                 </div>
                 <div class="formItem ">
                     <p class="titleText flex justify-start"><span class="titleTextGray">Телефон</span></p>
-                    <input class="formInput2 w-full" type="text" placeholder="+7 (   )">
+                    <input id="thirtyPercentPhoneNumber" name="phone" class="formInput2 w-full" 
+                            type="text" placeholder="+7 (700) 000-00-00" required>
                 </div>
-                <button class="mainButtin">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <button class="mainButtin" value="thirtyPercentForm">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="white" stroke-width="2" stroke-linecap="square"/>
                 </svg>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="useBlock mx-4 lg:mx-24  mt-28">
             <a name="spec"></a>
@@ -521,20 +539,22 @@
         <div class="formBlock mx-4 lg:mx-24  mt-24 flex flex-col py-12 px-7">
             <h1 class="Title">Остались вопросы?</h1>
             <p class="titleText mt-10"><span class="titleTextGray">Напишите нам, наш специалист ответит на все интересующие вас вопросы.</span></p>
-            <div class="formRow flex flex-col lg:flex-row gap-4 items-stretch lg:items-end self-stretch">
+            <form action="" id="questionForm" class="formRow flex flex-col lg:flex-row gap-4 items-stretch lg:items-end self-stretch">
                 <div class="formItem basis-1/4">
                     <p class="titleText mt-10"><span class="titleTextGray">Имя</span></p>
-                    <input class="formInput  w-full" type="text" placeholder="Как вас зовут">
+                    <input id="questionsName" name="name" class="formInput w-full" 
+                            type="text" placeholder="Как вас зовут" required>
                 </div>
                 <div class="formItem basis-1/4">
                     <p class="titleText mt-10"><span class="titleTextGray">Телефон</span></p>
-                    <input class="formInput w-full" type="text" placeholder="+7 (   )">
+                    <input id="questionsPhoneNumber" name="phone" class="formInput w-full"     
+                            type="text" placeholder="+7 (700) 000-00-00" required>
                 </div>
-                <button class="mainButtin">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <button class="mainButtin" value="questionForm">Оставить заявку<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="white" stroke-width="2" stroke-linecap="square"/>
                 </svg>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="contactsBlock mx-4 lg:mx-24  mt-24">
             <a name="contacts"></a>
@@ -551,7 +571,7 @@
                         </svg>
                         Заказать звонок
                     </button>
-                    <a href="https://wa.me/87023038487" class="self-stretch">
+                    <a href="https://wa.me/+77023038487" target="_blank" class="self-stretch">
                         <button class="secondButton w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9995 2.3999C14.5556 2.40093 16.9573 3.39116 18.7627 5.18809C20.5932 7.01021 21.6006 9.40039 21.5999 11.9183C21.5987 14.4541 20.5948 16.8425 18.7727 18.6436C16.9551 20.4402 14.5496 21.4297 11.9996 21.4297H11.9958C10.4979 21.4291 9.0127 21.0758 7.68164 20.4056L2.42615 21.5999L3.56924 16.4092C2.80356 14.9968 2.4002 13.4495 2.3999 11.9157V11.9139V11.911C2.40225 9.37681 3.40575 6.9853 5.22625 5.18574C7.04353 3.38926 9.44906 2.3999 11.9995 2.3999ZM11.9961 19.9312H11.9995C16.4642 19.9312 20.098 16.3364 20.0998 11.9179C20.1005 9.80132 19.2496 7.78833 17.7041 6.24966C16.1815 4.73442 14.1554 3.89932 11.9992 3.89844C7.53575 3.89844 3.90267 7.49653 3.89988 11.9141C3.89988 13.2789 4.28433 14.6625 5.01189 15.916L5.15822 16.1681L4.39914 19.6146L7.89381 18.8205L8.14234 18.9553C9.31842 19.5932 10.6511 19.9306 11.9961 19.9312ZM8.96681 7.72021H9.38763C9.54408 7.72666 9.71724 7.73897 9.88175 8.10313H9.88161C9.99504 8.35429 10.1848 8.82432 10.3346 9.19568C10.4428 9.46369 10.5302 9.6803 10.5533 9.72617C10.6081 9.83545 10.6448 9.96318 10.5716 10.1091C10.5565 10.1391 10.5432 10.1668 10.5307 10.193C10.4821 10.294 10.4445 10.3724 10.3574 10.4738C10.2476 10.6014 10.1143 10.7353 10.0156 10.8332C9.90551 10.9423 9.79114 11.0606 9.91914 11.2793C10.0473 11.4982 10.5004 12.2374 11.1533 12.817C11.8585 13.4431 12.4656 13.7089 12.7716 13.8429C12.8296 13.8683 12.8768 13.8889 12.9118 13.9064C13.1314 14.0158 13.2596 13.9975 13.3876 13.8515C13.5157 13.7056 13.9469 13.1999 14.0934 12.9813C14.2399 12.7624 14.3862 12.7988 14.5875 12.8716C14.7791 12.9412 15.7631 13.4317 16.0471 13.5733C16.0615 13.5805 16.0741 13.5868 16.0847 13.592C16.1277 13.6134 16.1678 13.6327 16.205 13.6506C16.358 13.7241 16.4615 13.7738 16.5057 13.8471C16.5605 13.9385 16.5605 14.3762 16.3775 14.8867C16.1946 15.3972 15.2979 15.8896 14.8953 15.926C14.8566 15.9295 14.8181 15.934 14.7786 15.9386C14.4066 15.9822 13.9369 16.0373 12.2603 15.379C10.1973 14.5689 8.83717 12.5612 8.55639 12.1468C8.5334 12.1129 8.51765 12.0896 8.50934 12.0786L8.5068 12.0752C8.38808 11.9172 7.61273 10.8851 7.61273 9.81729C7.61273 8.81036 8.10972 8.2825 8.33843 8.0396C8.35407 8.02299 8.36845 8.00771 8.38134 7.9937C8.58251 7.775 8.82033 7.72021 8.96681 7.72021Z" fill="#6EB762"/>
                             </svg>
