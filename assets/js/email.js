@@ -94,6 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function getMailerUrl() {
         return (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 
                     "http://127.0.0.1:8000/mailer.php" : 
-                    "https://arnau.estetika.agency/mailer.php";
+                    "https://arnau1.kz/mailer.php";
     }
 });
